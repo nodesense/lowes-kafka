@@ -191,7 +191,7 @@ public class SimpleProducer {
 	            // producer.send(record).get(); // sync, blocking 
 	            
 	            System.out.printf("Greeting %d - %s sent\n", counter, message);
-	           Thread.sleep(1000); // Demo only,
+	           Thread.sleep(5000); // Demo only,
 	            counter++;
 	        }
         }

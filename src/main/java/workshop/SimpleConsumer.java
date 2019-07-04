@@ -21,7 +21,7 @@ public class SimpleConsumer {
 
         props.put(GROUP_ID_CONFIG, "messages-consumer"); // offset, etc, TODO
 
-        props.put(ENABLE_AUTO_COMMIT_CONFIG, "true");
+        props.put(ENABLE_AUTO_COMMIT_CONFIG, "false");
         props.put(AUTO_COMMIT_INTERVAL_MS_CONFIG, "1000");
 
         props.put(SESSION_TIMEOUT_MS_CONFIG, "30000");
@@ -53,7 +53,7 @@ public class SimpleConsumer {
                 System.out.printf("key=%s,value=%s\n", record.key(), record.value());
             }
 
-           // consumer.commitSync(); // manual commit, set the offset
+           consumer.commitSync(); // manual commit, set the offset
         }
 
     }
