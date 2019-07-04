@@ -11,3 +11,11 @@ kafka-server-start $KAFKA_HOME/etc/kafka/server.properties \
   --override zookeeper.connect=k8.nodesense.ai:2181
   --override port=9198
   
+  
+  
+> zookeeper-shell k8.nodesense.ai:2181
+
+inside cli
+
+ls /brokers/ids
+
