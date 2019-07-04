@@ -17,7 +17,7 @@ import static org.apache.kafka.clients.producer.ProducerConfig.*;
 
 public class SimpleProducer {
     public static String BOOTSTRAP_SERVERS = "localhost:9092";
-    public static String TOPIC = "messages";
+    public static String TOPIC = "test";
 
 
     public static String[] greetingMessages = new String[] {
@@ -173,6 +173,8 @@ public class SimpleProducer {
         props.put(KEY_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
         props.put(VALUE_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
 
+        props.put("partitioner.class", CustomPartitioner.class);
+
 
         System.out.println("PRoducer Setup ");
         // Key as string, value as string
@@ -185,7 +187,7 @@ public class SimpleProducer {
 	        for (String message:greetingMessages) {
 	            // producer record, topic, key (null), value (message)
 	            // send message, not waiting for ack
-	            String key = "wishes" + counter;
+	            String key = "USA" ;
 	            ProducerRecord record = new ProducerRecord<>(TOPIC, key, counter + " " + message);
 	            producer.send(record); // async, non-blocking
 	            // producer.send(record).get(); // sync, blocking 

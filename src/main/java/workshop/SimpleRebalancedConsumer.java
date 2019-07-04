@@ -15,13 +15,13 @@ import static org.apache.kafka.clients.consumer.ConsumerConfig.*;
 
 public class SimpleRebalancedConsumer {
     public static String BOOTSTRAP_SERVERS = "localhost:9092";
-    public static String TOPIC = "messages";
+    public static String TOPIC = "greetings2";
 
     public static void main(String[] args) throws Exception {
         Properties props = new Properties();
         props.put(BOOTSTRAP_SERVERS_CONFIG, BOOTSTRAP_SERVERS);
 
-        props.put(GROUP_ID_CONFIG, "messages-consumer-rebalance"); // offset, etc, TODO
+        props.put(GROUP_ID_CONFIG, "greetings2-consumer-rebalance"); // offset, etc, TODO
 
         props.put(ENABLE_AUTO_COMMIT_CONFIG, "false");
         props.put(AUTO_COMMIT_INTERVAL_MS_CONFIG, "1000");
@@ -131,10 +131,12 @@ public class SimpleRebalancedConsumer {
             OffsetAndTimestamp offsetAndTimestamp = entry.getValue();
             TopicPartition tp = entry.getKey();
 
-            System.out.printf("For Given Partition %d for time %d, offset is \n",
-                    tp.partition(),
-                    offsetAndTimestamp.timestamp(),
-                    offsetAndTimestamp.offset());
+            if (offsetAndTimestamp != null) {
+                System.out.printf("For Given Partition %d for time %d, offset is \n",
+                        tp.partition(),
+                        offsetAndTimestamp.timestamp(),
+                        offsetAndTimestamp.offset());
+            }
         }
 
 

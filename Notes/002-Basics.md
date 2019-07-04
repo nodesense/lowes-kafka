@@ -42,3 +42,7 @@ kafka-topics --describe --zookeeper localhost:2181 --topic greetings
 kafka-console-producer --broker-list localhost:9092 --topic greetings --property "parse.key=true" --property "key.separator=:"
 
 kafka-console-consumer --bootstrap-server localhost:9092 --topic greetings --from-beginning --property print.key=true --property print.timestamp=true
+
+kafka-topics --create --zookeeper localhost:2181 --replication-factor 1 --partitions 3 --topic greetings
+
+kafka-topics --create --zookeeper localhost:2181 --replication-factor 1 --partitions 3 --topic greetings2
