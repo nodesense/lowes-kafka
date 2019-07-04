@@ -21,10 +21,11 @@ kafka-server-start $KAFKA_HOME/etc/kafka/server.properties \
   
   
 kafka-server-start $KAFKA_HOME/etc/kafka/server.properties \
-  --override delete.topic.enable=true \
-  --override broker.id=101 \
-  --override log.dirs=/tmp/kafka-logs-11 \
-  --override port=9199
+  --override broker.id=1 \
+  --override zookeeper.connect=k8.nodesense.ai:2181
+  
+  
+
 
 
  ./bin/zkCli.sh -server localhost:2181

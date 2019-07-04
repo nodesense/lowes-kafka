@@ -16,7 +16,7 @@ import static org.apache.kafka.clients.producer.ProducerConfig.*;
 
 
 public class SimpleProducer {
-    public static String BOOTSTRAP_SERVERS = "localhost:9092";
+    public static String BOOTSTRAP_SERVERS = "k8.nodesense.ai:9092";
     public static String TOPIC = "test";
 
 
@@ -173,7 +173,7 @@ public class SimpleProducer {
         props.put(KEY_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
         props.put(VALUE_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
 
-        props.put("partitioner.class", CustomPartitioner.class);
+       // props.put("partitioner.class", CustomPartitioner.class);
 
 
         System.out.println("PRoducer Setup ");
@@ -189,8 +189,8 @@ public class SimpleProducer {
 	            // send message, not waiting for ack
 	            String key = "USA" ;
 	            ProducerRecord record = new ProducerRecord<>(TOPIC, key, counter + " " + message);
-	            producer.send(record); // async, non-blocking
-	            // producer.send(record).get(); // sync, blocking 
+	           // producer.send(record); // async, non-blocking
+	             producer.send(record).get(); // sync, blocking
 	            
 	            System.out.printf("Greeting %d - %s sent\n", counter, message);
 	           Thread.sleep(5000); // Demo only,
