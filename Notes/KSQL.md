@@ -15,13 +15,19 @@ SHOW QUERIES;
 ksql-datagen quickstart=users format=avro topic=users maxInterval=5000
 ksql-datagen quickstart=pageviews format=avro topic=pageviews maxInterval=5000
 
-
-{"ROWTIME":1552105167062,
- "ROWKEY":"User_5",
+ 
+ Users Field 
+ 
   "registertime":1494126392062,
   "userid":"User_5",
   "regionid":"Region_9",
   "gender":"OTHER"}
+  
+ Page Views
+ 
+ [{\"name\":\"viewtime\",
+  {\"name\":\"userid\" 
+  \"name\":\"pageid
 
 CREATE STREAM users_stream (userid varchar, regionid varchar, gender varchar) WITH \
 (kafka_topic='users', value_format='AVRO');
@@ -33,6 +39,9 @@ Non Persistent
 
 select userid, regionid, gender from users_stream where gender='FEMALE';
 
+select userid, regionid, gender from users_stream where gender='MALE';
+
+
 Ctrl + c to exit
 
 Persistent query, create a kafka topic called users_female
@@ -42,6 +51,17 @@ CREATE STREAM users_female AS \
 SELECT userid AS userid, regionid \
 FROM users_stream \
 where gender='FEMALE';
+
+
+CREATE STREAM users_male AS \
+SELECT userid AS userid, regionid \
+FROM users_stream \
+where gender='MALE';
+
+
+
+outside ksql 
+kafka-avro-console-consumer --bootstrap-server localhost:9092 --topic users_male --from-beginning
 
 
  1552106259683 | 'User_4' | 'Page_80' ]) ts:1552106260558
@@ -56,10 +76,14 @@ CREATE STREAM pageviews_stream (userid varchar, pageid varchar) WITH \
 select * from pageviews_stream;
 
 
+
 users_stream
 pageviews_stream
 
 Joined output
+
+
+
 
 pageviews_enriched_stream
 
