@@ -35,7 +35,7 @@ kafka-server-start $KAFKA_HOME/etc/kafka/server.properties \
 [zk: localhost:2181(CONNECTED) 1] ls /admin/delete_topics
 
  
- kafka-reassign-partitions --zookeeper localhost:2181 --reassignment-json-file replica.json --execute
+ kafka-reassign-partitions --zookeeper k8.nodesense.ai:2181 --reassignment-json-file replica.json --execute
  
  kafka-topics --zookeeper localhost:2181 --topic test --describe
  

@@ -16,8 +16,9 @@ import static org.apache.kafka.clients.producer.ProducerConfig.*;
 
 
 public class SimpleProducer {
-    public static String BOOTSTRAP_SERVERS = "k4.nodesense.ai:9092";
-    public static String TOPIC = "messages";
+
+    public static String BOOTSTRAP_SERVERS = "k4.nodesense.ai:9092,k5.nodesense.ai:9092,k7.nodesense.ai:9092,k8.nodesense.ai:9092";
+    public static String TOPIC = "greetings";
 
 
     public static String[] greetingMessages = new String[] {
@@ -193,7 +194,7 @@ public class SimpleProducer {
 	             producer.send(record).get(); // sync, blocking
 	            
 	            System.out.printf("Greeting %d - %s sent\n", counter, message);
-	           Thread.sleep(5000); // Demo only,
+	           Thread.sleep(5); // Demo only,
 	            counter++;
 	        }
         }

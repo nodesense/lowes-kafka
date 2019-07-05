@@ -2,7 +2,13 @@
   "version": 1,
   "partitions": [
     {
-      "topic": "test2",  "partition": 0, "replicas":[0, 100, 101]
+      "topic": "greetings",  "partition": 0, "replicas":[0, 1,2]
+    },
+    {
+      "topic": "greetings",  "partition": 1, "replicas":[2,4,5]
+    },
+    {
+      "topic": "greetings",  "partition": 2, "replicas":[4,5,8]
     }
   ]
 }

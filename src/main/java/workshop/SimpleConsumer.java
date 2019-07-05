@@ -12,8 +12,8 @@ import java.util.Properties;
 import static org.apache.kafka.clients.consumer.ConsumerConfig.*;
 
 public class SimpleConsumer {
-    public static String BOOTSTRAP_SERVERS = "k8.nodesense.ai:9092";
-    public static String TOPIC = "messages";
+    public static String BOOTSTRAP_SERVERS = "k8.nodesense.ai:9092,k7.nodesense.ai:9092,k4.nodesense.ai:9092,k5.nodesense.ai:9092";
+    public static String TOPIC = "greetings";
 
     public static void main(String[] args) throws Exception {
         Properties props = new Properties();
