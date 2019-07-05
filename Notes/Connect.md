@@ -68,11 +68,36 @@ echo "line 1" >> input-file.txt
 ```
 ---------
 
+## Sink from Kafka Topic to File
 
+
+
+```
+nano krish-file-sink.properties
+```
+
+paste below connect
+
+
+```
 name=krish-file-sink
 connector.class=FileStreamSink
 tasks.max=1
 file=/root/krish/output-file.txt
 topics=krish-file-content
+```
+
+
+### to start the connector
+
+confluent load krish-file-sink -d /Users/krish/krish/krish-file-sink.properties
+
+### Know the status of the connector
+
+confluent status krish-file-sink
+
+### To stop the connector
+
+confluent unload krish-file-sink
 
 
