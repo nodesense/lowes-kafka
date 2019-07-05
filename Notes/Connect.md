@@ -37,6 +37,31 @@ kafka-console-consumer --bootstrap-server localhost:9092 --topic krish-file-cont
 ```
 
 
+### To know existing running connectors
+
+```
+confluent status connectors
+
+```
+
+### to start the connector
+
+
+confluent load krish-file-source -d /Users/krish/krish/krish-file-source.properties
+
+### Know the status of the connector
+
+confluent status krish-file-source
+
+
+### To stop the connector
+
+confluent unload krish-file-source
+
+
+---------
+
+
 name=krish-file-sink
 connector.class=FileStreamSink
 tasks.max=1
