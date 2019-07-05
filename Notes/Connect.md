@@ -110,3 +110,9 @@ confluent status krish-file-sink
 confluent unload krish-file-sink
 
 ```
+
+Write to topic, then it goes to file
+
+```
+kafka-console-producer --broker-list localhost:9092 --topic krish-file-content --property key.serializer=org.apache.kafka.common.serialization.StringSerializer --property value.serializer=org.apache.kafka.common.serialization.StringSerializer
+```
