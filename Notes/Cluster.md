@@ -1,4 +1,10 @@
 
+k8.nodesense.ai
+
+zookeeper-server-start $KAFKA_HOME/etc/kafka/zookeeper.properties
+
+
+
 kafka-server-start $KAFKA_HOME/etc/kafka/server.properties \
   --override broker.id=1 \
   --override zookeeper.connect=k8.nodesense.ai:2181
@@ -19,3 +25,8 @@ inside cli
 
 ls /brokers/ids
 
+
+
+kafka-topics --create --zookeeper k8.nodesense.ai:2181 --replication-factor 3 --partitions 5 --topic messages
+
+kafka-topics --describe --zookeeper k8.nodesense.ai:2181 --topic messages

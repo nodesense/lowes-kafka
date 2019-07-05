@@ -16,8 +16,8 @@ import static org.apache.kafka.clients.producer.ProducerConfig.*;
 
 
 public class SimpleProducer {
-    public static String BOOTSTRAP_SERVERS = "k8.nodesense.ai:9092";
-    public static String TOPIC = "test";
+    public static String BOOTSTRAP_SERVERS = "k4.nodesense.ai:9092";
+    public static String TOPIC = "messages";
 
 
     public static String[] greetingMessages = new String[] {
