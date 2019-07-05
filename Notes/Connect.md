@@ -59,6 +59,13 @@ confluent status krish-file-source
 confluent unload krish-file-source
 
 
+### Echo command to feed the data
+
+ensure you are in the same directory 
+
+```
+echo "line 1" >> input-file.txt
+```
 ---------
 
 
