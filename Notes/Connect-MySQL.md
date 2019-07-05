@@ -75,6 +75,14 @@ confluent status krish-mysql-product-source
 kafka-avro-console-consumer --bootstrap-server localhost:9092 --topic krish-db-products --from-beginning
 ```
 
+
+# to refer to schema registry on other machine
+
+kafka-avro-console-consumer --bootstrap-server localhost:9092 --topic krish-db-products --from-beginning     --property schema.registry.url="http://k8.nodesense.ai:8081"
+
+
+
+
 # Add data into db
 
 ```
