@@ -94,6 +94,11 @@ FROM pageviews_stream \
 LEFT JOIN users_stream \
   WITHIN 1 HOURS \
   ON pageviews_stream.userid = users_stream.userid;
+  
+  
+ 
+ kafka-avro-console-consumer --bootstrap-server localhost:9092 --topic pageviews_enriched_stream --from-beginning
+
 
 CREATE STREAM pageviews_enriched_stream_males AS \
 SELECT users_stream.userid AS userid, pageid, regionid, gender \
@@ -117,6 +122,10 @@ CREATE TABLE pageviews_region_table \
         HAVING COUNT(*) >= 1;
 
 select *  from pageviews_region_table;
+
+
+ kafka-avro-console-consumer --bootstrap-server localhost:9092 --topic pageviews_region_table --from-beginning
+
 
 PERSISTED QUERY FOR TABLE
 
