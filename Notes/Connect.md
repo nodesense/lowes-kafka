@@ -88,16 +88,25 @@ topics=krish-file-content
 ```
 
 
+### Create a output file
+
+```
+touch output-file.txt
+```
+
 ### to start the connector
 
+
+```
 confluent load krish-file-sink -d /Users/krish/krish/krish-file-sink.properties
+```
 
 ### Know the status of the connector
-
+```
 confluent status krish-file-sink
-
+```
 ### To stop the connector
-
+```
 confluent unload krish-file-sink
 
-
+```
