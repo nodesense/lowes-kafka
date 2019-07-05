@@ -100,3 +100,50 @@ select * from products;
 update products set price=300 where id=1;
 
 ```
+
+
+# Kafka to MySQL Sink
+
+
+
+```
+mysql -uroot
+
+ 
+USE krish;
+
+create table brands (id int, name varchar(255));
+
+ ```
+
+
+```
+touch krish-mysql-brand-sink.properties
+```
+
+paste the below content
+
+```
+name=krish-mysql-brand-sink
+connector.class=io.confluent.connect.jdbc.JdbcSinkConnector
+tasks.max=1
+topics=brands
+connection.url=jdbc:mysql://k8.localhost.ai:3306/krish?user=team&password=team1234
+auto.create=true
+key.converter=io.confluent.connect.avro.AvroConverter
+key.converter.schema.registry.url=http://k8.nodesense.ai:8081
+value.converter=io.confluent.connect.avro.AvroConverter
+value.converter.schema.registry.url=http://k8.nodesense.ai:8081
+
+```
+
+```
+confluent load krish-mysql-brand-sink -d krish-mysql-brand-sink.properties
+```
+
+
+```
+kafka-avro-console-producer --broker-list k8.nodesense.ai:9092 --topic brands --property value.schema='{"type":"record","name":"brand","fields":[{"name":"id","type":"int"},{"name":"name", "type": "string"}]}'
+```
+
+{"id": 1, "name": "Google"}

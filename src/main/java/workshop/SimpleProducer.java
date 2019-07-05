@@ -17,7 +17,7 @@ import static org.apache.kafka.clients.producer.ProducerConfig.*;
 
 public class SimpleProducer {
 
-    public static String BOOTSTRAP_SERVERS = "k4.nodesense.ai:9092,k5.nodesense.ai:9092,k7.nodesense.ai:9092,k8.nodesense.ai:9092";
+    public static String BOOTSTRAP_SERVERS = "k8.nodesense.ai:9092";
     public static String TOPIC = "greetings";
 
 
@@ -188,13 +188,13 @@ public class SimpleProducer {
 	        for (String message:greetingMessages) {
 	            // producer record, topic, key (null), value (message)
 	            // send message, not waiting for ack
-	            String key = "USA" ;
+	            String key = "Message" + counter ;
 	            ProducerRecord record = new ProducerRecord<>(TOPIC, key, counter + " " + message);
 	           // producer.send(record); // async, non-blocking
 	             producer.send(record).get(); // sync, blocking
 	            
 	            System.out.printf("Greeting %d - %s sent\n", counter, message);
-	           Thread.sleep(5); // Demo only,
+	           Thread.sleep(10); // Demo only,
 	            counter++;
 	        }
         }

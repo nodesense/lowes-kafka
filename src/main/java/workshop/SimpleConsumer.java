@@ -12,14 +12,14 @@ import java.util.Properties;
 import static org.apache.kafka.clients.consumer.ConsumerConfig.*;
 
 public class SimpleConsumer {
-    public static String BOOTSTRAP_SERVERS = "k8.nodesense.ai:9092,k7.nodesense.ai:9092,k4.nodesense.ai:9092,k5.nodesense.ai:9092";
+    public static String BOOTSTRAP_SERVERS = "k8.nodesense.ai:9092";
     public static String TOPIC = "greetings";
 
     public static void main(String[] args) throws Exception {
         Properties props = new Properties();
         props.put(BOOTSTRAP_SERVERS_CONFIG, BOOTSTRAP_SERVERS);
 
-        props.put(GROUP_ID_CONFIG, "messages-consumer"); // offset, etc, TODO
+        props.put(GROUP_ID_CONFIG, "greetings-consumer-group"); // offset, etc, TODO
 
         props.put(ENABLE_AUTO_COMMIT_CONFIG, "false");
         props.put(AUTO_COMMIT_INTERVAL_MS_CONFIG, "1000");
@@ -54,6 +54,8 @@ public class SimpleConsumer {
             }
 
            consumer.commitSync(); // manual commit, set the offset
+
+            Thread.sleep(20000);
         }
 
     }
